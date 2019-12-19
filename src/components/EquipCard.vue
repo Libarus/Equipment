@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="in-card">
-            <div class="label-role">Я {{ card.role }}</div>
+            <div class="label-role" :class="colors[card.role.toLowerCase()]">Я {{ card.role }}</div>
             <div>
                 <div class="icon">
                     <img :src="'/assets/icons/' + card.type + '.png'">
@@ -50,6 +50,14 @@
                 required: true
             }
         },
+        data() {
+            return {
+                colors : {
+                    "пользователь": "class-red",
+                    "владелец": "class-green"
+                }
+            }
+        },
         filters: {
             convertDate(value) {
                 let date = value.split('/');
@@ -94,7 +102,15 @@
                 font-size: 11px;
                 padding: 5px 10px;
                 color: white;
-                min-width: 100px;
+                min-width: 10px;
+            }
+
+            .class-red {
+                background-color: red;
+            }
+
+            .class-green {
+                background-color: green;
             }
 
             .icon {
